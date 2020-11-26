@@ -9,13 +9,13 @@ import os
 
 # New version to do API calls to Yelp
 
-# TODO: Store API key safely outside code itself, such as key.private
+# TODO: combine the 4 requests into one JSON, for cleaner code
 
+# Use key.private for yelp API key
 
-# foulette_api_key = "placeholder"
+# Use + for space
 foulette_location = "niles+il"
-
-
+foulette_searchterm = "restaurants"
 
 def main(argv):
 
@@ -27,10 +27,10 @@ def main(argv):
         'Authorization': f"Bearer {foulette_api_key}"
     }
 
-    yelp_url1 = f"https://api.yelp.com/v3/businesses/search?term=restaurants&location={foulette_location}&limit=50&radius=25000"
-    yelp_url2 = f"https://api.yelp.com/v3/businesses/search?term=restaurants&location={foulette_location}&limit=50&radius=25000&offset=50"
-    yelp_url3 = f"https://api.yelp.com/v3/businesses/search?term=restaurants&location={foulette_location}&limit=50&radius=25000&offset=100"
-    yelp_url4 = f"https://api.yelp.com/v3/businesses/search?term=restaurants&location={foulette_location}&limit=50&radius=25000&offset=150"
+    yelp_url1 = f"https://api.yelp.com/v3/businesses/search?term={foulette_searchterm}&location={foulette_location}&limit=50&radius=25000"
+    yelp_url2 = f"https://api.yelp.com/v3/businesses/search?term={foulette_searchterm}&location={foulette_location}&limit=50&radius=25000&offset=50"
+    yelp_url3 = f"https://api.yelp.com/v3/businesses/search?term={foulette_searchterm}&location={foulette_location}&limit=50&radius=25000&offset=100"
+    yelp_url4 = f"https://api.yelp.com/v3/businesses/search?term={foulette_searchterm}&location={foulette_location}&limit=50&radius=25000&offset=150"
 
     yelp_get1 = requests.get(url=yelp_url1, headers=yelp_headers)
     yelp_get2 = requests.get(url=yelp_url2, headers=yelp_headers)
@@ -48,13 +48,13 @@ def main(argv):
 
     # ["businesses"][rd]["name"] is within JSON (dict, list, dict)
     if rd_get == 1:
-        your_pick = json_yelp_get1["businesses"][rd]["name"]
+        your_pick = json_yelp_get1["businesses"][rd]["name"] + " in " + json_yelp_get1["businesses"][rd]["location"]["city"]
     elif rd_get == 2:
-        your_pick = json_yelp_get2["businesses"][rd]["name"]   
+        your_pick = json_yelp_get2["businesses"][rd]["name"] + " in " + json_yelp_get1["businesses"][rd]["location"]["city"]   
     elif rd_get == 3:
-        your_pick = json_yelp_get3["businesses"][rd]["name"]   
+        your_pick = json_yelp_get3["businesses"][rd]["name"] + " in " + json_yelp_get1["businesses"][rd]["location"]["city"]   
     elif rd_get == 4:
-        your_pick = json_yelp_get4["businesses"][rd]["name"]   
+        your_pick = json_yelp_get4["businesses"][rd]["name"] + " in " + json_yelp_get1["businesses"][rd]["location"]["city"]   
 
     print (f'Your Pick is: \n{your_pick}')
 
