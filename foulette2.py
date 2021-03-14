@@ -50,11 +50,11 @@ def main(argv):
     if rd_get == 1:
         your_pick = json_yelp_get1["businesses"][rd]["name"] + " in " + json_yelp_get1["businesses"][rd]["location"]["city"]
     elif rd_get == 2:
-        your_pick = json_yelp_get2["businesses"][rd]["name"] + " in " + json_yelp_get1["businesses"][rd]["location"]["city"]   
+        your_pick = json_yelp_get2["businesses"][rd]["name"] + " in " + json_yelp_get2["businesses"][rd]["location"]["city"]   
     elif rd_get == 3:
-        your_pick = json_yelp_get3["businesses"][rd]["name"] + " in " + json_yelp_get1["businesses"][rd]["location"]["city"]   
+        your_pick = json_yelp_get3["businesses"][rd]["name"] + " in " + json_yelp_get3["businesses"][rd]["location"]["city"]   
     elif rd_get == 4:
-        your_pick = json_yelp_get4["businesses"][rd]["name"] + " in " + json_yelp_get1["businesses"][rd]["location"]["city"]   
+        your_pick = json_yelp_get4["businesses"][rd]["name"] + " in " + json_yelp_get4["businesses"][rd]["location"]["city"]   
 
     print (f'Your Pick is: \n{your_pick}')
 
